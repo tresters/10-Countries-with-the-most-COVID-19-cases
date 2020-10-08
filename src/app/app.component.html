@@ -1,0 +1,24 @@
+<div class="container">
+  <p class="text-center font-weight-bold">10 Countries with the most cases of COVID-19</p>
+
+  <!-- =============================================================================================================== -->
+  <!-- ===============================================> Usage b-table <=============================================== -->
+  <!-- =============================================================================================================== -->
+
+  <b-table *ngIf="data" [columns]="columns" [value]="data" [striped]="true" [bordered]="true" [small]="true" [dark]="true"
+  [rows]="rows" [totalRecords]="_data?.length" [hover]="true" [headLight]="true"
+  (onRowSelect)="selectedRow=$event;onRowSelect($event)">
+  <ng-template bTemplate="header">
+    <tr>
+      <th *ngFor="let col of columns">{{col.header}}</th>
+    </tr>
+  </ng-template>
+  <ng-template bTemplate="body" let-rowData>
+    <tr [bSelectableRow]="rowData" [ngClass]="{'table-active':selectedRow?.selected && selectedRow?.data===rowData}">
+      <td *ngFor="let col of columns">{{rowData[col.field]}}</td>
+    </tr>
+  </ng-template>
+</b-table>
+
+<div>{{showDetails}}</div>
+</div>
